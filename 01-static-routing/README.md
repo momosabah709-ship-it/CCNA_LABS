@@ -115,9 +115,7 @@ The first test checks local router reachability. The other two test communicatio
 
 ## Repository layout
 
-This is the first lab in the `CCNA_LABS` collection. Its documentation is stored at `01-static-routing/README.md`. Other labs can be added in separate numbered folders.
-
-The Packet Tracer file, configuration exports and screenshots are not yet attached to this folder. The addressing plan and static route commands above are included directly so this README is usable on its own.
+This folder contains `README.md` and `static_routing.pkt`. Separate configuration exports and screenshots are not included here. The addressing plan and static route commands are documented directly above.
 
 ## Reference
 
