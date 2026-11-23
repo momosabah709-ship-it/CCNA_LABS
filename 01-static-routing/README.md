@@ -11,8 +11,7 @@ My first static-routing lab in Cisco Packet Tracer. Three routers connect three 
 
 ## Lab file
 
-The original network was saved in **Cisco Packet Tracer 9.0.1.0858**. This README documents its saved configuration. The `.pkt` file and screenshots will be added separately; they are not included in this documentation-only commit.
-
+Download [the Packet Tracer lab](static_routing.pkt) and open it in Cisco Packet Tracer 9.0.1.0858 or a compatible version.
 ## Topology and addressing
 
 ```text
