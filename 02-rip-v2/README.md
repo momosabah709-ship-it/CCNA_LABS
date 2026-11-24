@@ -54,4 +54,4 @@ Why: without authentication, any device running RIP on the segment could inject 
 
 ## Files
 
-- `RIPv2-Lab.pkt`: the Packet Tracer lab file
+- `RIP.pkt`: the Packet Tracer lab file
