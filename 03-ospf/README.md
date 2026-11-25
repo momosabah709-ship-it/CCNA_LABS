@@ -6,8 +6,8 @@ A two-router GNS3 lab running OSPF (Area 0) between two sites. Each router does 
 | File | Description |
 |------|-------------|
 | `OSPF.gns3` | GNS3 project file (topology) |
-| `R1.cfg`, `R2.cfg` | Router configurations |
-| `PC1.vpc` ... `PC4.vpc` | VPCS configuration of each PC |
+| `all-configs.txt` | Configuration of the routers, switches and PCs |
+| `ping-test.jpeg` | Ping test from PC2 |
 
 ## Topology
 - 2 routers: R1, R2 (Cisco c7200, IOS 12.4(25d))
@@ -67,12 +67,17 @@ interface FastEthernet0/0.10
  ip address 192.168.1.1 255.255.255.0
 ```
 
+The switch sections in `all-configs.txt` (VLANs and trunk ports) were reconstructed from the router and PC settings. They were not exported from the switches.
+
 ## Verification
 - `show ip ospf neighbor` - neighbor state should be Full
 - `show ip route ospf` - routes learned through OSPF
 - `show ip ospf interface` - area, cost, timers and DR per interface
 - `show ip protocols` - router ID and networks OSPF runs on
-- Ping from PC1 to PC3 to test connectivity between the two sites
+
+Ping test from PC2 to PC3, PC4, 10.0.0.1 and 10.0.0.2 succeeded (the first two packets time out while ARP and routing settle):
+
+![PC2 ping test](ping-test.jpeg)
 
 ## How to open
 1. Install GNS3 (2.2.61 or later).
@@ -87,7 +92,6 @@ OSPF is a link-state routing protocol. It runs in three phases:
 3. **Change**: when the topology changes, the router floods a triggered LSU and every router recalculates. Unlike RIP, OSPF does not send its whole routing table every 30 seconds.
 
 On shared networks such as Ethernet, routers elect a DR (Designated Router) and a BDR (Backup DR).
-
 ## Other useful OSPF commands
 | Command | Purpose |
 |---------|---------|
