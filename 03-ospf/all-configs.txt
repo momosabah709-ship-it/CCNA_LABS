@@ -1,0 +1,101 @@
+### R1
+hostname R1
+no ip domain lookup
+ip cef
+interface FastEthernet0/0
+ no ip address
+ duplex half
+interface FastEthernet0/0.10
+ encapsulation dot1Q 10
+ ip address 192.168.1.1 255.255.255.0
+interface FastEthernet0/0.20
+ encapsulation dot1Q 20
+ ip address 192.168.2.1 255.255.255.0
+interface FastEthernet1/0
+ ip address 10.0.0.1 255.255.255.252
+ duplex auto
+ speed auto
+interface FastEthernet1/1
+ no ip address
+ shutdown
+router ospf 1
+ router-id 1.1.1.1
+ log-adjacency-changes
+ network 10.0.0.0 0.0.0.3 area 0
+ network 192.168.1.0 0.0.0.255 area 0
+ network 192.168.2.0 0.0.0.255 area 0
+line vty 0 4
+ login
+end
+
+### R2
+hostname R2
+no ip domain lookup
+ip cef
+interface FastEthernet0/0
+ no ip address
+ duplex half
+interface FastEthernet0/0.30
+ encapsulation dot1Q 30
+ ip address 192.168.3.1 255.255.255.0
+interface FastEthernet0/0.40
+ encapsulation dot1Q 40
+ ip address 192.168.4.1 255.255.255.0
+interface FastEthernet1/0
+ ip address 10.0.0.2 255.255.255.252
+ duplex auto
+ speed auto
+interface FastEthernet1/1
+ no ip address
+ shutdown
+router ospf 1
+ router-id 2.2.2.2
+ log-adjacency-changes
+ network 10.0.0.0 0.0.0.3 area 0
+ network 192.168.3.0 0.0.0.255 area 0
+ network 192.168.4.0 0.0.0.255 area 0
+line vty 0 4
+ login
+end
+
+### IOU1
+vlan 10
+vlan 20
+interface Ethernet0/0
+ switchport mode access
+ switchport access vlan 10
+interface Ethernet0/1
+ switchport mode access
+ switchport access vlan 20
+interface Ethernet0/2
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+
+### IOU2 
+vlan 30
+vlan 40
+interface Ethernet0/0
+ switchport mode access
+ switchport access vlan 30
+interface Ethernet0/1
+ switchport mode access
+ switchport access vlan 40
+interface Ethernet0/2
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+
+### PC1
+set pcname PC1
+ip 192.168.1.100 192.168.1.1 24
+
+### PC2
+set pcname PC2
+ip 192.168.2.100 192.168.2.1 24
+
+### PC3
+set pcname PC3
+ip 192.168.3.100 192.168.3.1 24
+
+### PC4
+set pcname PC4
+ip 192.168.4.100 192.168.4.1 24
